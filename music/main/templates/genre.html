@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Жанры музыки{% endblock title %}
+
+{% block content %}
+    <h1>Список жанров</h1>
+        <table border="1" cellpadding="10" cellspacing="0"">
+            <thead>
+                <tr style="background-color: white;">
+                    <th style="width: 5%;">№</th>
+                    <th style="width: 20%;">Название (RU)</th>
+                    <th style="width: 20%;">Название (EN)</th>
+                    <th style="width: 35%;">Описание</th>
+                    <th style="width: 10%;">Удалить</th>
+                    <th style="width: 10%;">Редактировать</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <a href="/add_genre/"> Добавить</a>
+                {% for b in genres %}
+                    <tr>
+                        <td>{{ b.id }}</td>
+                        <td>{{ b.name_ru}}</td>
+                        <td>{{ b.name_en}}</td>
+                        <td>{{ b.discription}}</td>
+                        <td> <a href="/delete_genre/{{ b.id }}/">Удалить</a> </td>
+                        <td> <a href="/edit_genre/{{ b.id }}/">Редактировать</a> </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+{% endblock content %}

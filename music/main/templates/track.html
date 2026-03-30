@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Жанры музыки{% endblock title %}
+
+{% block content %}
+    <h1>Список треков</h1>
+        <table border="1" cellpadding="10" cellspacing="0"">
+            <thead>
+                <tr style="background-color: white;">
+                    <th style="width: 5%;">№</th>
+                    <th style="width: 10%;">Файл</th>
+                    <th style="width: 25%;">Имя (RU)</th>
+                    <th style="width: 25%;">Длительность</th>
+                    <th style="width: 25%;">Жанр</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for b in tracks %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>
+                            {% if b.audio_file %}
+                                <audio src = "{{ b.audio_file.url }}" controls></audio>
+                            {% endif %}
+                        </td>
+                        <td>{{ b.title}}</td>
+                        <td>{{ b.duration}}</td>
+                        <td>{{ b.genres.all|join:", "}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+{% endblock content %}
